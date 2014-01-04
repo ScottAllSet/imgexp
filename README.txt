@@ -7,10 +7,13 @@ Copyright 2013 - Scott R. Jones (sjones204g@gmail.com)
 =======================================================
 ThirdParty dependencies
 
+Compilers supported:
+GCC >= 4.6 
+MSVC 2012
+
 imgexp requires:
-G++ >= 4.6
 Boost >= 1.55.0 (headers only)
-JsonCpp >= 0.6.0-rc2
+JsonCpp >= 0.6.0-rc2 (from http://sourceforge.net/projects/jsoncpp/files/jsoncpp/0.6.0-rc2/jsoncpp-src-0.6.0-rc2-amalgamation.tar.gz/download)
 cmake >= 2.8.7 (maybe 2.8 if you're not building expbuilder)
 
 Additionally, imgexptest requires:
@@ -20,10 +23,10 @@ Additionally, expbuilder requires:
 Qt >= 5.2
 
 imgexp, imgexptest, and expbuilder require environment variables that point to their dependencies:
-BOOST_DIR - (E.g. C:\boost_1_55_0)
-JSONCPP_DIR - (E.g. C:\JsonCpp_0.6.0-rc2)
-GTEST_DIR - (E.g. C:\gtest-1.7.0)
-QTDIR (note the lack of _) - (E.g. C:\qt-everywhere-opensource-src-5.2.0)
+BOOST_DIR - (E.g. C:\dev\thirdparty\boost_1_55_0)
+JSONCPP_DIR - (E.g. C:\dev\thirdparty\jsoncpp-src-amalgamation0.6.0-rc2)
+GTEST_DIR - (E.g. C:\dev\thirdparty\gtest-1.7.0)
+QTDIR (note the lack of _) - (E.g. C:\dev\thirdparty\qt-everywhere-opensource-src-5.2.0)
 
 ================================================
 Build instructions (substitute C:\dev with your workspace)
