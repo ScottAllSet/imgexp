@@ -6,7 +6,9 @@ project(imgexp CXX)
 
 add_definitions(-DJSON_IS_AMALGAMATION)
 
-find_package(Boost 1.55 REQUIRED)
+set(Boost_DEBUG 1)
+
+find_package(Boost 1.55.0)
 
 #uncomment to enable verbose compilation
 #add_definitions(-v)
