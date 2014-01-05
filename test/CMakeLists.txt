@@ -6,16 +6,17 @@ project(imgexptest CXX)
 
 add_definitions(-DJSON_IS_AMALGAMATION)
 
+find_package(Boost 1.55 REQUIRED)
+
 #uncomment to enable verbose compilation
 #add_definitions(-v)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 file(TO_CMAKE_PATH $ENV{GTEST_DIR} gtest_dir)
-file(TO_CMAKE_PATH $ENV{BOOST_DIR} boost_dir)
 file(TO_CMAKE_PATH $ENV{JSONCPP_DIR} jsoncpp_dir)
 
-include_directories(include ${gtest_dir}/include ${boost_dir} ${jsoncpp_dir})
+include_directories(include ${gtest_dir}/include ${Boost_INCLUDE_DIR} ${jsoncpp_dir})
 
 link_directories(${gtest_dir} ${CMAKE_CURRENT_SOURCE_DIR}../../build)
 
