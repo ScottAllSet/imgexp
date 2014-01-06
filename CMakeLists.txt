@@ -6,7 +6,7 @@ project(imgexp CXX)
 
 add_definitions(-DJSON_IS_AMALGAMATION)
 
-set(Boost_DEBUG 1)
+set(Boost_DEBUG 0)
 
 find_package(Boost 1.55.0)
 
