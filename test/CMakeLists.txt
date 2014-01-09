@@ -1,30 +1,25 @@
-#run cmake with "-DCMAKE_BUILD_TYPE=Debug"
+#In Qt Creator, run cmake with "-DCMAKE_BUILD_TYPE=Debug" to debug.
 
 cmake_minimum_required (VERSION 2.8)
 
 project(imgexptest CXX)
-
-add_definitions(-DJSON_IS_AMALGAMATION)
-
-find_package(Boost 1.55 REQUIRED)
-
-#uncomment to enable verbose compilation
-#add_definitions(-v)
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-
 file(TO_CMAKE_PATH $ENV{GTEST_DIR} gtest_dir)
-file(TO_CMAKE_PATH $ENV{JSONCPP_DIR} jsoncpp_dir)
-
-include_directories(include ${gtest_dir}/include ${Boost_INCLUDE_DIR} ${jsoncpp_dir})
-
+include_directories(include ${gtest_dir}/include)
 link_directories(${gtest_dir} ${CMAKE_CURRENT_SOURCE_DIR}../../build)
-
-#set(jsoncpp_source ${jsoncpp_dir}/jsoncpp.cpp)
-
 add_executable(imgexptest src/imgexptest.cpp)
 
-target_link_libraries(imgexptest libgtest.a libgtest_main.a)
+if(MSVC)
+	set(gtest_main_lib gtest_main.lib)
+	set(gtest_lib gtest.lib )
+else()
+	set(gtest_main_lib libgtest_main.a)
+	set(gtest_lib libgtest.a)
+endif()
 
-#uncomment when I start making tests
-#target_link_libraries(imgexptest libgtest.a libgtest_main.a libimgexp.a)
+#TODO: add imgexp.lib
+target_link_libraries(imgexptest 
+	debug ${gtest_dir}/Debug/${gtest_lib}
+	debug ${gtest_dir}/Debug/${gtest_main_lib}
+	optimized ${gtest_dir}/Release/${gtest_lib}
+	optimized ${gtest_dir}/Release/${gtest_main_lib}
+	)
