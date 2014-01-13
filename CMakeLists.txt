@@ -6,6 +6,7 @@ project(imgexp)
 cmake_policy(SET CMP0020 NEW)
 cmake_minimum_required (VERSION 2.8.7)
 add_definitions(-DJSON_IS_AMALGAMATION)
+set(Boost_USE_STATIC_LIBS ON)
 set(Boost_DEBUG 0)
 find_package(Boost 1.55.0)
 
@@ -21,9 +22,10 @@ set(jsoncpp_source ${jsoncpp_dir}/jsoncpp.cpp)
 include_directories(include ${Boost_INCLUDE_DIR} ${jsoncpp_dir})
 
 #imgexp
-set(imgexp_source src/imgexp.cpp)
-set(imgexp_include include/config.h include/imgexp.h)
-add_library(imgexp SHARED ${jsoncpp_source} ${imgexp_source} ${imgexp_include})
+set(imgexp_source src/imgexp.cpp src/imgexputil.cpp)
+set(imgexp_include include/config.h include/imgexputil.h include/imgexp.h)
+add_library(imgexp STATIC ${jsoncpp_source} ${imgexp_source} ${imgexp_include})
+SET_TARGET_PROPERTIES(imgexp PROPERTIES PREFIX "")
 
 #imgexptest
 add_subdirectory(test)
